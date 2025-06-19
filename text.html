@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>aFlix - Premium Streaming</title>
+  <style>
+    :root {
+      --primary: #e50914;
+      --dark: #141414;
+      --light: #f5f5f5;
+      --gray: #808080;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--dark);
+      color: var(--light);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .logo-container {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .logo {
+      height: 80px;
+      margin-bottom: 1rem;
+    }
+
+    .app-name {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .tagline {
+      font-size: 1rem;
+      color: var(--gray);
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background-color: rgba(20, 20, 20, 0.9);
+      border-radius: 10px;
+      padding: 2rem;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      margin-bottom: 2rem;
+      border: 1px solid #333;
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      text-align: center;
+    }
+
+    .card-subtitle {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      color: var(--gray);
+    }
+
+    .steps {
+      margin-bottom: 2rem;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .step-number {
+      background-color: var(--primary);
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+      flex-shrink: 0;
+      font-size: 0.8rem;
+    }
+
+    .step-text {
+      flex: 1;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--primary);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    .btn:hover {
+      background-color: #f40612;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      border: 1px solid var(--gray);
+      color: var(--gray);
+      display: none;
+    }
+
+    .btn-secondary.visible {
+      display: block;
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    .support-text {
+      font-size: 0.9rem;
+      color: var(--gray);
+      text-align: center;
+      margin-top: 1rem;
+      line-height: 1.5;
+    }
+
+    .highlight {
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    .error-message {
+      color: #ff6b6b;
+      text-align: center;
+      margin-bottom: 1rem;
+      display: none;
+    }
+
+    .visible {
+      display: block;
+    }
+
+    .countdown {
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: 1rem;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-container">
+    <img src="https://files.catbox.moe/m1zgke.png" alt="aFlix Logo" class="logo">
+    <h1 class="app-name">aFlix</h1>
+    <p class="tagline">Unlimited movies, TV shows, and more.</p>
+  </div>
+
+  <div class="card">
+    <h2 class="card-title">We Need Your Support</h2>
+    <p class="card-subtitle">Watch a quick ad to help keep aFlix running</p>
+
+    <div id="errorMessage" class="error-message">You closed the advertisement too early. Please watch for at least 20 seconds.</div>
+    <div id="countdown" class="countdown">Please wait <span id="countdownNumber">10</span> seconds...</div>
+
+    <a href="https://www.profitableratecpm.com/yt3341jef5?key=c2a1b80969816038cca8eaafce502d5c" target="_blank" class="btn" id="adBtn">Open Daily Ad (20-30 seconds)</a>
+    <button class="btn btn-secondary" id="reloadBtn">Reload After Watching</button>
+
+    <div class="steps">
+      <div class="step"><div class="step-number">1</div><div class="step-text">Click on the button above to open the ad</div></div>
+      <div class="step"><div class="step-number">2</div><div class="step-text">Ad will open in your browser</div></div>
+      <div class="step"><div class="step-number">3</div><div class="step-text">Watch the ad for at least <span class="highlight">20 seconds</span></div></div>
+      <div class="step"><div class="step-number">4</div><div class="step-text">Return to aFlix and click "Reload"</div></div>
+    </div>
+
+    <p class="support-text">
+      We know ads can be annoying, but they help us keep aFlix free and running. 
+      Your support allows us to provide unlimited entertainment without subscriptions.
+    </p>
+  </div>
+
+  <script>
+    const errorMessage = document.getElementById('errorMessage');
+    const countdown = document.getElementById('countdown');
+    const countdownNumber = document.getElementById('countdownNumber');
+    const adBtn = document.getElementById('adBtn');
+    const reloadBtn = document.getElementById('reloadBtn');
+
+    function startCountdown() {
+      countdown.style.display = 'block';
+      let seconds = 10;
+      countdownNumber.textContent = seconds;
+
+      const interval = setInterval(() => {
+        seconds--;
+        countdownNumber.textContent = seconds;
+
+        if (seconds <= 0) {
+          clearInterval(interval);
+          countdown.style.display = 'none';
+          reloadBtn.classList.add('visible');
+        }
+      }, 1000);
+    }
+
+    adBtn.addEventListener('click', () => {
+      localStorage.setItem('adStarted', Date.now().toString());
+      startCountdown();
+    });
+
+    reloadBtn.addEventListener('click', () => {
+      localStorage.removeItem('adStarted');
+      window.location.href = 'https://aflix-demo.vercel.app/';
+    });
+
+    // On return from ad
+    const adTime = localStorage.getItem('adStarted');
+    if (adTime) {
+      const diff = (Date.now() - parseInt(adTime)) / 1000;
+      if (diff >= 10) {
+        reloadBtn.classList.add('visible');
+      } else {
+        startCountdown();
+      }
+    }
+  </script>
+</body>
+</html>
